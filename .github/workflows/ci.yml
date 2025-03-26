@@ -45,7 +45,7 @@ jobs:
         run: npx nx build --base-href=/diet/ --configuration=production
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist/apps/your-app-name  # Adjust this path to your Angular build output
 
