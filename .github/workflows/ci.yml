@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  main:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -38,14 +38,7 @@ jobs:
       # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
       - run: npx nx affected -t lint test build
 
-  deploy:
-    needs: main
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - run: npx nx deploy --base-href=/diet/ --name="Nikita Emelianov" --email="nikita.emelianov@gmail.com"
+      - name: Deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx nx deploy --base-href=/diet/ --name="Nikita Emelianov" --email="nikita.emelianov@gmail.com"
