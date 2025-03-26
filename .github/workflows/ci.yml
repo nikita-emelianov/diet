@@ -44,4 +44,8 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - run: npx nx deploy --base-href=/diet/ --name="Nikita Emelianov" --email="nikita.emelianov@gmail.com"
