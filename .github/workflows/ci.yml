@@ -46,7 +46,7 @@ jobs:
       - name: Prepare and deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: nx deploy --base-href=/diet/
+        run: npx nx deploy --base-href=/diet/
 #  deploy:
 #    if: github.ref == 'refs/heads/main'
 #    needs: main
