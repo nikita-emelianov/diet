@@ -40,7 +40,7 @@ jobs:
       # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
       - run: npx nx affected -t lint test build
 
-      - name: Upload dist artifacts
+      - name: Upload diet artifacts
         uses: actions/upload-artifact@v4
         with:
           name: diet
@@ -58,7 +58,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: diet
-          path: diet
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
