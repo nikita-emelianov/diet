@@ -81,9 +81,6 @@
         "staticFilePath": "dist/diet/browser",
         "spa": true
       }
-    },
-    "deploy": {
-      "executor": "angular-cli-ghpages:deploy"
     }
   }
 }
