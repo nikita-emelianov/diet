@@ -6,6 +6,14 @@
   "prefix": "app",
   "sourceRoot": "./src",
   "tags": [],
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss",
+      "changeDetection": "OnPush",
+      "skipTests": "true",
+      "standalone": "true"
+    }
+  },
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
