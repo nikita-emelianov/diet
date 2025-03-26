@@ -1,4 +1,4 @@
-name: CI
+name: Build and Deploy to GitHub Pages
 
 on:
   push:
@@ -11,6 +11,10 @@ permissions:
   contents: write
   pages: write
   id-token: write
+
+environment:
+  name: docs
+  url: ${{ steps.deployment.outputs.page_url }}
 
 jobs:
   main:
