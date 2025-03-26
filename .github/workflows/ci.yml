@@ -8,16 +8,11 @@ on:
 
 permissions:
   actions: read
-  contents: write
-  pages: write
-  id-token: write
+  contents: read
 
 jobs:
   main:
     runs-on: ubuntu-latest
-    environment:
-      name: docs
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -43,32 +38,9 @@ jobs:
       # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
       - run: npx nx affected -t lint test build
 
-      - name: Prepare and deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx nx deploy --base-href=/diet/ --name="Nikita Emelianov" --email="nikita.emelianov@gmail.com"
-#  deploy:
-#    if: github.ref == 'refs/heads/main'
-#    needs: main
-#    runs-on: ubuntu-latest
-#    permissions:
-#      contents: read
-#      pages: write
-#      id-token: write
-#    environment:
-#      name: github-pages
-#      url: ${{ steps.deployment.outputs.page_url }}
-#    steps:
-#      - name: Download diet artifacts
-#        uses: actions/download-artifact@v4
-#        with:
-#          name: diet
-#
-#      - name: Setup Pages
-#        uses: actions/configure-pages@v3
-#
-#      - name: Deploy to GitHub Pages
-#        id: deployment
-#        uses: actions/deploy-pages@v4
-#        with:
-#          artifact_name: diet
+  deploy:
+    - name: Deploy to github pages
+      needs: main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: npx nx deploy --base-href=/diet/ --name="Nikita Emelianov" --email="nikita.emelianov@gmail.com"
