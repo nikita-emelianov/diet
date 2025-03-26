@@ -12,13 +12,12 @@ permissions:
   pages: write
   id-token: write
 
-environment:
-  name: docs
-  url: ${{ steps.deployment.outputs.page_url }}
-
 jobs:
   main:
     runs-on: ubuntu-latest
+    environment:
+      name: docs
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
