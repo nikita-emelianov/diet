@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { httpResource } from '@angular/common/http';
+import { Component, effect } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -8,5 +9,12 @@ import { RouterModule } from '@angular/router';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  test = httpResource(() => 'https://yaa7olirlc.execute-api.eu-central-1.amazonaws.com/custom')
   title = 'diet';
+
+  constructor() {
+    effect(() => {
+      console.log(this.test.value());
+    });
+  }
 }
